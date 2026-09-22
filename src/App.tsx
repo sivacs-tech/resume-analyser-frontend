@@ -165,20 +165,23 @@ export default function App() {
           </div>
           
           <div className="flex items-center space-x-6">
-            <div className="flex bg-gray-100/80 p-1.5 rounded-xl border border-gray-200/60 shadow-inner">
-               <button 
-                 onClick={() => { setActiveTab('NEW'); setSelectedRecord(null); }} 
-                 className={`px-4 py-1.5 rounded-lg text-sm font-semibold transition-all ${activeTab === 'NEW' ? 'bg-white text-gray-900 shadow-sm border border-gray-200/50' : 'text-gray-500 hover:text-gray-800'}`}
-               >
-                 New Analysis
-               </button>
-               <button 
-                 onClick={() => { setActiveTab('HISTORY'); loadHistory(); setSelectedRecord(null); }} 
-                 className={`px-4 py-1.5 rounded-lg text-sm font-semibold transition-all ${activeTab === 'HISTORY' ? 'bg-white text-gray-900 shadow-sm border border-gray-200/50' : 'text-gray-500 hover:text-gray-800'}`}
-               >
-                 My Applications
-               </button>
-            </div>
+            {/* Tabs are part of the logged-in workspace, so only show them once signed in */}
+            <SignedIn>
+              <div className="flex bg-gray-100/80 p-1.5 rounded-xl border border-gray-200/60 shadow-inner">
+                 <button 
+                   onClick={() => { setActiveTab('NEW'); setSelectedRecord(null); }} 
+                   className={`px-4 py-1.5 rounded-lg text-sm font-semibold transition-all ${activeTab === 'NEW' ? 'bg-white text-gray-900 shadow-sm border border-gray-200/50' : 'text-gray-500 hover:text-gray-800'}`}
+                 >
+                   New Analysis
+                 </button>
+                 <button 
+                   onClick={() => { setActiveTab('HISTORY'); loadHistory(); setSelectedRecord(null); }} 
+                   className={`px-4 py-1.5 rounded-lg text-sm font-semibold transition-all ${activeTab === 'HISTORY' ? 'bg-white text-gray-900 shadow-sm border border-gray-200/50' : 'text-gray-500 hover:text-gray-800'}`}
+                 >
+                   My Applications
+                 </button>
+              </div>
+            </SignedIn>
           
             {/* If the user is NOT logged in, show a Sign In button */}
             <SignedOut>
